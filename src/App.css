@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url(./images/background.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  color: goldenrod;
+}
+.btnadd {
+  display: flex;
+  justify-content: center;
+}
+.search {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
