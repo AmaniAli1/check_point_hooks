@@ -3,10 +3,10 @@ import { Rate } from "antd";
 
 const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
-const RaterSearch = () => {
-  const [star, setStar] = useState();
+const RaterSearch = ({ star, setStar }) => {
+  // const [star, setStar] = useState();
   const handleChange = (star) => {
-    setStar({ star });
+    setStar(star);
   };
   return (
     <div>

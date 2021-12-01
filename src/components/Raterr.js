@@ -5,10 +5,6 @@ const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 const Raterr = ({ evaluation }) => {
   const [star, setStar] = useState(3);
 
-  const handleChange = (evaluation) => {
-    setStar({ evaluation });
-  };
-
   return (
     <span>
       <Rate tooltips={desc} disabled value={evaluation} />

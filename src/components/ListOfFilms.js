@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import MovieCard from "./MovieCard";
 import Filter from "./Filter";
+import RaterSearch from "./RaterSearch";
 
 import "./ListOfFilms.css";
+
+import AddMovie from "./AddMovie";
 
 const ListOfFilms = (props) => {
   const [movies, setMovies] = useState([
@@ -44,34 +48,49 @@ const ListOfFilms = (props) => {
       poster: "https://m.media-amazon.com/images/I/61BGvE8DumL._AC_SY606_.jpg",
       evaluation: 5,
     },
+    {
+      title: "Man On Fire",
+      description:
+        "est un thriller psychologique américain, coécrit et réalisé par Todd Phillips",
+      poster:
+        "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/8177fbaa5b4c092f1c43941737eb96b531ee1c48cd66c3270f92ffbe8493b529._RI_V_TTW_.jpg",
+      evaluation: 2,
+    },
+    {
+      title: "Unstoppable",
+      description:
+        "Unstoppable is a 2010 American action thriller film directed.",
+      poster:
+        "https://fr.web.img2.acsta.net/medias/nmedia/18/79/72/83/19535862.jpg",
+      evaluation: 5,
+    },
   ]);
-  const filmsearch = [];
-  /********************** 
-  const showSearchFilm = (props) => {
-    movies.Filter((filmsearch) => movies.title.include(props));
-    setMovies(filmsearch);
-  };
-  /*** filmsearch.map((film, i) => (
-      <div style={{ height: "300px" }}>
-        <MovieCard>{film}</MovieCard>
-      </div>
-    ));
-  };
-  /******************************* 
-  const showFilm = () => {
-    
-    ));
-  };
-  /***************** */
+
+  const [search, setSearch] = useState("");
+  const [star, setStar] = useState(1);
+
   return (
     <div>
-      <Filter>{movies}</Filter>
+      <div className="Search">
+        <Filter search={search} setSearch={setSearch} />
+        <RaterSearch star={star} setStar={setStar} />
+        <AddMovie movies={movies} setMovies={setMovies} />
+      </div>
+      <h1>
+        <i>LIST OF MOVIES</i>
+      </h1>
       <div className="listFilm">
-        {movies.map((film, i) => (
-          <div style={{ width: "300px" }}>
-            <MovieCard>{film}</MovieCard>
-          </div>
-        ))}
+        {movies
+          .filter(
+            (movie) =>
+              movie.title.toUpperCase().includes(search.toUpperCase()) &&
+              movie.evaluation >= star
+          )
+          .map((film, i) => (
+            <div>
+              <MovieCard film={film} />
+            </div>
+          ))}
       </div>
     </div>
   );
