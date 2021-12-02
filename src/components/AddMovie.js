@@ -4,7 +4,11 @@ import "./AddMovie.css";
 
 const AddMovie = ({ movies, setMovies }) => {
   const [show, setShow] = useState(false);
-  const [newFilm, setNewFilm] = useState({ title: "", rating: 1, img: "" });
+  const [newFilm, setNewFilm] = useState({
+    title: "",
+    evaluation: 1,
+    poster: "",
+  });
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -14,9 +18,13 @@ const AddMovie = ({ movies, setMovies }) => {
   };
 
   const addMovie = (newFilm) => {
-    setNewFilm([...movies, newFilm]);
+    setMovies([...movies, newFilm]);
     handleClose();
-    setNewFilm({ title: "", rating: 1, img: "" });
+    setNewFilm({
+      title: "",
+      evaluation: 1,
+      poster: "",
+    });
   };
 
   return (
@@ -41,8 +49,8 @@ const AddMovie = ({ movies, setMovies }) => {
           <Form.Control
             type="number"
             className="modalInput"
-            name="rating"
-            value={newFilm.rating}
+            name="evaluation"
+            value={newFilm.evaluation}
             onChange={handleChange}
             placeholder="Enter movie rating ..."
             min="1"
@@ -51,8 +59,8 @@ const AddMovie = ({ movies, setMovies }) => {
           <Form.Control
             type="text"
             className="modalInput"
-            name="img"
-            value={newFilm.img}
+            name="poster"
+            value={newFilm.poster}
             onChange={handleChange}
             placeholder="Enter movie image URL ..."
           />
@@ -67,8 +75,8 @@ const AddMovie = ({ movies, setMovies }) => {
               addMovie({
                 title: newFilm.title,
                 description: "",
-                poster: newFilm.img,
-                evaluation: newFilm.rating,
+                poster: newFilm.poster,
+                evaluation: newFilm.evaluation,
               })
             }
           >
