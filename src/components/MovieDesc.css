@@ -1,0 +1,12 @@
+.moviesDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+  color: cornflowerblue;
+}
+
+.imgStyle {
+  width: 80 px;
+}

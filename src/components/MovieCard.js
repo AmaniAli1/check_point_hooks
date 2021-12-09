@@ -2,8 +2,9 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Raterr from "./Raterr";
 import "./MovieCard.css";
+import { Link } from "react-router-dom";
 
-const MovieCard = (props) => {
+const MovieCard = ({ film }) => {
   return (
     <div className="movieCard">
       <Card
@@ -12,16 +13,23 @@ const MovieCard = (props) => {
           backgroundColor: "gainsboro",
         }}
       >
-        <Card.Img
-          variant="top"
-          src={props.film.poster}
-          height="300px"
-          className="movieImg"
-        />
+        <Link
+          to={{
+            pathname: `/film/${film.id}`,
+            state: film,
+          }}
+        >
+          <Card.Img
+            variant="top"
+            src={film.poster}
+            height="300px"
+            className="movieImg"
+          />
+        </Link>
         <Card.Body className="cardText">
-          <Card.Title>{props.film.title}</Card.Title>
+          <Card.Title>{film.title}</Card.Title>
           <Card.Text>
-            <Raterr evaluation={props.film.evaluation}></Raterr>
+            <Raterr evaluation={film.evaluation}></Raterr>
           </Card.Text>
           {/* <Card.Text>{props.film.description}</Card.Text> */}
         </Card.Body>
